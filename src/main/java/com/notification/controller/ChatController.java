@@ -1,5 +1,6 @@
-package com.notification;
+package com.notification.controller;
 
+import com.notification.entity.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;

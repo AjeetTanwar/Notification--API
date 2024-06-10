@@ -1,4 +1,4 @@
-package com.notification;
+package com.notification.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,17 +11,13 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 public class SecurityConfig {
 
-    public SecurityFilterChain filterChain(HttpSecurity http)throws Exception{
-         http
-                .authorizeHttpRequests(g->g.requestMatchers("/","/ws/**").permitAll()
-
-                        .anyRequest().authenticated()
-
-                ).formLogin(form->form
-                         .loginPage("/login").permitAll());
-
-                        http .logout( logout -> logout.logoutSuccessUrl("/"));
-
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        http
+                .authorizeHttpRequests(g -> g.requestMatchers("/", "/ws/**").permitAll()
+                        .anyRequest().authenticated())
+                .formLogin(form -> form
+                        .loginPage("/login").permitAll());
+        http.logout(logout -> logout.logoutSuccessUrl("/"));
         return http.build();
     }
 
@@ -38,9 +34,6 @@ public class SecurityConfig {
                 .password("rahul")
                 .roles("USER")
                 .build();
-
-
-        return new InMemoryUserDetailsManager(user,user1);
+        return new InMemoryUserDetailsManager(user, user1);
     }
-
 }
